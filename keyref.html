@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Neovim Key Reference</title>
+<style>
+  @page { size: A4; margin: 1.5cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "Helvetica Neue", Arial, sans-serif;
+    font-size: 11px;
+    color: #1e1e2e;
+    padding: 1.5cm;
+    max-width: 210mm;
+    margin: 0 auto;
+  }
+  h1 {
+    font-size: 18px;
+    margin-bottom: 4px;
+  }
+  .subtitle {
+    color: #6c7086;
+    margin-bottom: 16px;
+    font-size: 10px;
+  }
+  .columns {
+    column-count: 2;
+    column-gap: 24px;
+  }
+  section {
+    break-inside: avoid;
+    margin-bottom: 14px;
+  }
+  h2 {
+    font-size: 12px;
+    background: #1e1e2e;
+    color: #cdd6f4;
+    padding: 3px 8px;
+    border-radius: 3px;
+    margin-bottom: 4px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2px;
+  }
+  td {
+    padding: 2px 6px;
+    vertical-align: top;
+  }
+  td:first-child {
+    width: 40%;
+    white-space: nowrap;
+  }
+  tr:nth-child(even) { background: #f2f4fa; }
+  kbd {
+    font-family: "SF Mono", "Fira Code", "Consolas", monospace;
+    font-size: 10.5px;
+    background: #e6e9ef;
+    border: 1px solid #ccd0da;
+    border-radius: 3px;
+    padding: 0 4px;
+  }
+  .note {
+    color: #6c7086;
+    font-style: italic;
+    font-size: 10px;
+    padding: 2px 6px;
+  }
+  @media print {
+    body { padding: 0; }
+  }
+</style>
+</head>
+<body>
+
+<h1>Neovim Key Reference</h1>
+<p class="subtitle">Leader key is <kbd>Space</kbd> &mdash; which-key will show available bindings as you type</p>
+
+<div class="columns">
+
+<section>
+<h2>Essential Vim</h2>
+<table>
+<tr><td><kbd>i</kbd></td><td>Insert mode (before cursor)</td></tr>
+<tr><td><kbd>a</kbd></td><td>Insert mode (after cursor)</td></tr>
+<tr><td><kbd>o</kbd> / <kbd>O</kbd></td><td>New line below / above</td></tr>
+<tr><td><kbd>Esc</kbd></td><td>Normal mode, clear search highlight</td></tr>
+<tr><td><kbd>u</kbd> / <kbd>Ctrl r</kbd></td><td>Undo / redo</td></tr>
+<tr><td><kbd>.</kbd></td><td>Repeat last change</td></tr>
+<tr><td><kbd>:</kbd><em>cmd</em></td><td>Command mode</td></tr>
+<tr><td><kbd>:w</kbd> / <kbd>:q</kbd></td><td>Save / quit</td></tr>
+<tr><td><kbd>:wq</kbd> or <kbd>ZZ</kbd></td><td>Save and quit</td></tr>
+</table>
+</section>
+
+<section>
+<h2>Movement</h2>
+<table>
+<tr><td><kbd>h</kbd><kbd>j</kbd><kbd>k</kbd><kbd>l</kbd></td><td>Left, down, up, right</td></tr>
+<tr><td><kbd>w</kbd> / <kbd>b</kbd></td><td>Next / previous word</td></tr>
+<tr><td><kbd>0</kbd> / <kbd>$</kbd></td><td>Start / end of line</td></tr>
+<tr><td><kbd>^</kbd></td><td>First non-blank character</td></tr>
+<tr><td><kbd>gg</kbd> / <kbd>G</kbd></td><td>Top / bottom of file</td></tr>
+<tr><td><kbd>{</kbd> / <kbd>}</kbd></td><td>Previous / next paragraph</td></tr>
+<tr><td><kbd>Ctrl d</kbd> / <kbd>Ctrl u</kbd></td><td>Half-page down / up</td></tr>
+<tr><td><kbd>%</kbd></td><td>Matching bracket</td></tr>
+<tr><td><kbd>/</kbd><em>pattern</em></td><td>Search forward</td></tr>
+<tr><td><kbd>n</kbd> / <kbd>N</kbd></td><td>Next / previous match</td></tr>
+<tr><td><kbd>*</kbd></td><td>Search word under cursor</td></tr>
+</table>
+</section>
+
+<section>
+<h2>Editing</h2>
+<table>
+<tr><td><kbd>dd</kbd> / <kbd>yy</kbd></td><td>Delete / yank line</td></tr>
+<tr><td><kbd>p</kbd> / <kbd>P</kbd></td><td>Paste after / before</td></tr>
+<tr><td><kbd>cc</kbd> / <kbd>C</kbd></td><td>Change line / to end</td></tr>
+<tr><td><kbd>ciw</kbd></td><td>Change inner word</td></tr>
+<tr><td><kbd>ci"</kbd> / <kbd>ci(</kbd></td><td>Change inside quotes / parens</td></tr>
+<tr><td><kbd>di{</kbd> / <kbd>da{</kbd></td><td>Delete inside / around braces</td></tr>
+<tr><td><kbd>x</kbd></td><td>Delete character</td></tr>
+<tr><td><kbd>~</kbd></td><td>Toggle case</td></tr>
+<tr><td><kbd>&gt;&gt;</kbd> / <kbd>&lt;&lt;</kbd></td><td>Indent / dedent line</td></tr>
+<tr><td><kbd>V</kbd> then <kbd>&gt;</kbd></td><td>Visual select then indent</td></tr>
+</table>
+</section>
+
+<section>
+<h2>Visual Mode</h2>
+<table>
+<tr><td><kbd>v</kbd></td><td>Character-wise visual</td></tr>
+<tr><td><kbd>V</kbd></td><td>Line-wise visual</td></tr>
+<tr><td><kbd>Ctrl v</kbd></td><td>Block visual (columns)</td></tr>
+<tr><td><kbd>gq</kbd></td><td>Reflow selection</td></tr>
+</table>
+</section>
+
+<section>
+<h2>Find &amp; Replace</h2>
+<table>
+<tr><td><kbd>Space</kbd> <kbd>f</kbd><kbd>f</kbd></td><td>Find files</td></tr>
+<tr><td><kbd>Space</kbd> <kbd>f</kbd><kbd>g</kbd></td><td>Live grep (search in files)</td></tr>
+<tr><td><kbd>Space</kbd> <kbd>f</kbd><kbd>b</kbd></td><td>Buffers</td></tr>
+<tr><td><kbd>Space</kbd> <kbd>Space</kbd></td><td>Buffers (alt)</td></tr>
+<tr><td><kbd>Space</kbd> <kbd>f</kbd><kbd>h</kbd></td><td>Help tags</td></tr>
+<tr><td><kbd>Space</kbd> <kbd>f</kbd><kbd>d</kbd></td><td>Diagnostics</td></tr>
+<tr><td><kbd>Space</kbd> <kbd>f</kbd><kbd>r</kbd></td><td>Resume last search</td></tr>
+<tr><td><kbd>:%s/old/new/g</kbd></td><td>Replace all in file</td></tr>
+</table>
+<p class="note">Inside Telescope: Ctrl-j/k to move, Enter to open, Esc to close</p>
+</section>
+
+<section>
+<h2>LSP (Code Intelligence)</h2>
+<table>
+<tr><td><kbd>g</kbd><kbd>d</kbd></td><td>Go to definition</td></tr>
+<tr><td><kbd>g</kbd><kbd>D</kbd></td><td>Go to declaration</td></tr>
+<tr><td><kbd>g</kbd><kbd>r</kbd></td><td>References</td></tr>
+<tr><td><kbd>g</kbd><kbd>i</kbd></td><td>Go to implementation</td></tr>
+<tr><td><kbd>g</kbd><kbd>y</kbd></td><td>Type definition</td></tr>
+<tr><td><kbd>K</kbd></td><td>Hover documentation</td></tr>
+<tr><td><kbd>Space</kbd> <kbd>c</kbd><kbd>a</kbd></td><td>Code action</td></tr>
+<tr><td><kbd>Space</kbd> <kbd>c</kbd><kbd>r</kbd></td><td>Rename symbol</td></tr>
+<tr><td><kbd>Space</kbd> <kbd>c</kbd><kbd>d</kbd></td><td>Line diagnostics</td></tr>
+<tr><td><kbd>Space</kbd> <kbd>q</kbd></td><td>Diagnostics list</td></tr>
+</table>
+</section>
+
+<section>
+<h2>File Explorer (Neo-tree)</h2>
+<table>
+<tr><td><kbd>Space</kbd> <kbd>e</kbd></td><td>Toggle file tree</td></tr>
+</table>
+<p class="note">Inside Neo-tree:</p>
+<table>
+<tr><td><kbd>Enter</kbd> / <kbd>o</kbd></td><td>Open file</td></tr>
+<tr><td><kbd>a</kbd></td><td>Add file/directory</td></tr>
+<tr><td><kbd>d</kbd></td><td>Delete</td></tr>
+<tr><td><kbd>r</kbd></td><td>Rename</td></tr>
+<tr><td><kbd>c</kbd> / <kbd>m</kbd> / <kbd>p</kbd></td><td>Copy / move / paste</td></tr>
+<tr><td><kbd>H</kbd></td><td>Toggle hidden files</td></tr>
+<tr><td><kbd>R</kbd></td><td>Refresh</td></tr>
+<tr><td><kbd>?</kbd></td><td>Show help</td></tr>
+</table>
+</section>
+
+<section>
+<h2>Completion (blink.cmp)</h2>
+<table>
+<tr><td><kbd>Ctrl n</kbd> / <kbd>Ctrl p</kbd></td><td>Next / previous item</td></tr>
+<tr><td><kbd>Enter</kbd></td><td>Accept completion</td></tr>
+<tr><td><kbd>Ctrl e</kbd></td><td>Dismiss</td></tr>
+<tr><td><kbd>Ctrl b</kbd> / <kbd>Ctrl f</kbd></td><td>Scroll docs up / down</td></tr>
+</table>
+</section>
+
+<section>
+<h2>Windows &amp; Buffers</h2>
+<table>
+<tr><td><kbd>Ctrl h</kbd><kbd>j</kbd><kbd>k</kbd><kbd>l</kbd></td><td>Move between windows</td></tr>
+<tr><td><kbd>:sp</kbd> / <kbd>:vsp</kbd></td><td>Horizontal / vertical split</td></tr>
+<tr><td><kbd>Ctrl w</kbd> <kbd>q</kbd></td><td>Close window</td></tr>
+<tr><td><kbd>Ctrl w</kbd> <kbd>=</kbd></td><td>Equalize window sizes</td></tr>
+<tr><td><kbd>:bn</kbd> / <kbd>:bp</kbd></td><td>Next / previous buffer</td></tr>
+<tr><td><kbd>:bd</kbd></td><td>Close buffer</td></tr>
+</table>
+</section>
+
+<section>
+<h2>Management</h2>
+<table>
+<tr><td><kbd>:Lazy</kbd></td><td>Plugin manager</td></tr>
+<tr><td><kbd>:Mason</kbd></td><td>LSP server manager</td></tr>
+<tr><td><kbd>:LspInfo</kbd></td><td>Active language servers</td></tr>
+<tr><td><kbd>:checkhealth</kbd></td><td>Diagnose issues</td></tr>
+</table>
+</section>
+
+</div>
+</body>
+</html>
