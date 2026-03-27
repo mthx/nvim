@@ -40,6 +40,10 @@ timer:start(1000, 1000, vim.schedule_wrap(function()
   end
 end))
 
+-- Remove default right-click popup menu
+vim.cmd([[aunmenu PopUp]])
+vim.api.nvim_del_augroup_by_name("nvim.popupmenu")
+
 -- Keymaps
 vim.keymap.set("n", "<Esc>", function()
   vim.cmd("nohlsearch")
