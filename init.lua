@@ -80,26 +80,3 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup("plugins", {
   change_detection = { notify = false },
 })
-
--- Treesitter textobjects (explicit keymaps since config-based ones don't apply)
-local ts_move = require("nvim-treesitter-textobjects.move")
-local ts_select = require("nvim-treesitter-textobjects.select")
-
--- Move: ]f/[f (function), ]c/[c (class), ]a/[a (parameter)
-vim.keymap.set("n", "]f", function() ts_move.goto_next_start("@function.outer", "textobjects") end, { desc = "Next function" })
-vim.keymap.set("n", "[f", function() ts_move.goto_previous_start("@function.outer", "textobjects") end, { desc = "Previous function" })
-vim.keymap.set("n", "]c", function() ts_move.goto_next_start("@class.outer", "textobjects") end, { desc = "Next class" })
-vim.keymap.set("n", "[c", function() ts_move.goto_previous_start("@class.outer", "textobjects") end, { desc = "Previous class" })
-vim.keymap.set("n", "]a", function() ts_move.goto_next_start("@parameter.inner", "textobjects") end, { desc = "Next parameter" })
-vim.keymap.set("n", "[a", function() ts_move.goto_previous_start("@parameter.inner", "textobjects") end, { desc = "Previous parameter" })
-
--- Select: af/if (function), ac/ic (class), aa/ia (parameter)
-local select_modes = { "x", "o" }
-for _, mode in ipairs(select_modes) do
-  vim.keymap.set(mode, "af", function() ts_select.select_textobject("@function.outer", "textobjects") end, { desc = "Around function" })
-  vim.keymap.set(mode, "if", function() ts_select.select_textobject("@function.inner", "textobjects") end, { desc = "Inside function" })
-  vim.keymap.set(mode, "ac", function() ts_select.select_textobject("@class.outer", "textobjects") end, { desc = "Around class" })
-  vim.keymap.set(mode, "ic", function() ts_select.select_textobject("@class.inner", "textobjects") end, { desc = "Inside class" })
-  vim.keymap.set(mode, "aa", function() ts_select.select_textobject("@parameter.outer", "textobjects") end, { desc = "Around parameter" })
-  vim.keymap.set(mode, "ia", function() ts_select.select_textobject("@parameter.inner", "textobjects") end, { desc = "Inside parameter" })
-end

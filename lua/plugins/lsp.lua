@@ -32,7 +32,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     dependencies = { "williamboman/mason.nvim", "neovim/nvim-lspconfig" },
     opts = {
-      ensure_installed = { "vtsls", "lua_ls" },
+      ensure_installed = { "vtsls", "lua_ls", "tailwindcss" },
     },
   },
 
@@ -128,6 +128,11 @@ return {
       -- TypeScript via vtsls - automatically uses project-local TypeScript from node_modules
       lspconfig.vtsls.setup({
         capabilities = capabilities,
+        settings = {
+          vtsls = {
+            autoUseWorkspaceTsdk = true,
+          },
+        },
         on_attach = function(client)
           -- Suppress "client extension required" error after organizeImports
           vim.lsp.commands["_typescript.didOrganizeImports"] = function() end
@@ -143,6 +148,11 @@ return {
             workspace = { checkThirdParty = false },
           },
         },
+      })
+
+      -- Tailwind CSS
+      lspconfig.tailwindcss.setup({
+        capabilities = capabilities,
       })
     end,
   },
