@@ -177,8 +177,12 @@ vim.lsp.config("vtsls", {
 vim.lsp.config("lua_ls", {
   settings = {
     Lua = {
-      diagnostics = { globals = { "vim" } },
-      workspace = { checkThirdParty = false },
+      runtime = { version = "LuaJIT" },
+      workspace = {
+        checkThirdParty = false,
+        -- Types for Neovim's own Lua API; plugin APIs aren't included
+        library = { vim.env.VIMRUNTIME },
+      },
     },
   },
 })
