@@ -1,31 +1,19 @@
-return {
-  {
-    "folke/tokyonight.nvim",
-    priority = 1000,
-    opts = {
-      style = "night",
-    },
-    config = function(_, opts)
-      require("tokyonight").setup(opts)
-      vim.cmd.colorscheme("tokyonight")
-    end,
-  },
+vim.pack.add({
+  "https://github.com/folke/tokyonight.nvim",
+  "https://github.com/folke/which-key.nvim",
+  "https://github.com/nvim-lualine/lualine.nvim",
+  "https://github.com/nvim-tree/nvim-web-devicons",
+})
 
-  {
-    "folke/which-key.nvim",
-    event = "VeryLazy",
-    opts = {},
-  },
+require("tokyonight").setup({ style = "night" })
+vim.cmd.colorscheme("tokyonight")
 
-  {
-    "nvim-lualine/lualine.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    opts = {
-      options = {
-        theme = "auto",
-        component_separators = { left = "|", right = "|" },
-        section_separators = {},
-      },
-    },
+require("which-key").setup({})
+
+require("lualine").setup({
+  options = {
+    theme = "auto",
+    component_separators = { left = "|", right = "|" },
+    section_separators = {},
   },
-}
+})
