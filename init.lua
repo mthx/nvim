@@ -29,6 +29,11 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function() vim.opt_local.wrap = true end,
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "gitcommit",
+  callback = function() vim.opt_local.textwidth = 72 end,
+})
+
 -- Reload files changed outside nvim (on focus, and poll every second for background changes)
 vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold" }, {
   command = "silent! checktime",
