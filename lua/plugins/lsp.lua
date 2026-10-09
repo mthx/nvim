@@ -187,8 +187,12 @@ vim.lsp.config("lua_ls", {
   },
 })
 
--- mason-lspconfig installs these and calls vim.lsp.enable() for them.
+-- mason-lspconfig installs these and calls vim.lsp.enable() for them. Without
+-- an explicit automatic_enable list it enables every server mason has
+-- installed, including ts_ls alongside vtsls.
+local servers = { "vtsls", "lua_ls" }
 require("mason").setup({})
 require("mason-lspconfig").setup({
-  ensure_installed = { "vtsls", "lua_ls" },
+  ensure_installed = servers,
+  automatic_enable = servers,
 })
